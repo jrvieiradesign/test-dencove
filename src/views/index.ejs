@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workspace Admin</title>
+  <script>
+    
+    function handleDelete(data) {
+      fetch('http://localhost:3333/delete',{
+      method:'DELETE',
+      body: data,
+    })
+      location.href = 'http://localhost:3333/admin';
+      location.href = 'http://localhost:3333/admin';
+    }
+  
+    </script>
+</head>
+<body style="padding: 30px;">
+  <h1>Workspace Admin</h1>
+  <div style="display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 42px;
+  ">
+    
+    <% data.forEach(function(data) { %>
+    <div style="display: flex;
+    flex-direction: column;
+    width: 425px;
+    gap: 10px;">
+      <object width="425" height="350">
+      <param  name="movie" value="<%= data.url %>" />
+    </object>
+    <button type="submit" onclick="handleDelete('<%= data.id %>')">delete</button>
+  </div>
+  <% }); %>
+
+</div>
+  <div>
+  <h2>Nova Camera de monitoramento</h2>
+  <form action="/create" method="post">
+    <input type="text" name="url" placeholder="insira url">
+    <button type="submit" onclick="handleRefresh()">Adicionar</button>
+    <p>Ajustar tamanho do video no final da url <strong>425x350</strong></p>
+  </form>
+  </div>
+</body>
+</html>
